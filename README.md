@@ -15,7 +15,7 @@ Hotelin-BE is a backend service for Hotelin, a web application for managing and 
 - Clone the repository
 
 ```bash
-$ git clone https://github.com/SI4401-Kelompok5-Hotelin/Hotelin-BE.git
+$ git clone https://github.com/rafidfadhil/UTSIAE.git
 ```
 
 - Install dependencies
@@ -41,4 +41,4 @@ TL;DR: Please read the [Contributing Guide](CONTRIBUTING.md) before contributing
 
 ## Regards
 
-- Abdi Fatih
+- Rafid Fadhil
