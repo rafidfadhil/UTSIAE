@@ -35,10 +35,6 @@ $ go run main.go
 
 Running the application will create a database named `hotelin` in your local PostgreSQL instance.
 
-## Contributing
-
-TL;DR: Please read the [Contributing Guide](CONTRIBUTING.md) before contributing.
-
 ## Regards
 
 - Rafid Fadhil
