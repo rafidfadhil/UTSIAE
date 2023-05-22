@@ -110,7 +110,7 @@ func Setup(app *fiber.App) {
 
 	hotelAdminAPI := adminAPI.Group("/hotel")
 	hotelAdminAPI.Post("/create", hotel.RegisterHotel)
-	hotelAdminAPI.Get("/detail/:id", hotel.GetHotelByID)
+	hotelAdminAPI.Get("/detail/", hotel.GetHotelByID)
 	hotelAdminAPI.Put("/update", hotel.UpdateHotel)
 	hotelAdminAPI.Delete("/delete", hotel.DeleteHotel)
 

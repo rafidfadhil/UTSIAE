@@ -40,7 +40,7 @@ func RegisterHotel(c *fiber.Ctx) error {
 func GetHotelByID(c *fiber.Ctx) error {
 	var hotel models.Hotel
 
-	id := c.Params("id")
+	id := c.Query("id")
 
 	err := database.DB.Where("id = ?", id).First(&hotel).Error
 
