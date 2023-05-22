@@ -40,7 +40,7 @@ func RegisterHotel(c *fiber.Ctx) error {
 func GetHotelByID(c *fiber.Ctx) error {
 	var hotel models.Hotel
 
-	id := c.Query("id")
+	id := c.Params("id")
 
 	err := database.DB.Where("id = ?", id).First(&hotel).Error
 
@@ -50,21 +50,14 @@ func GetHotelByID(c *fiber.Ctx) error {
 		})
 	}
 
-	hotelResponse := models.HotelResponse{
-		ID:      hotel.ID,
-		Name:    hotel.Name,
-		Email:   hotel.Email,
-		Phone:   hotel.Phone,
-		Address: hotel.Address,
-		Rating:  hotel.Rating,
-	}
+	hotelResponse := models.HotelResponse(hotel) // Convert hotel to HotelResponse
 
 	return c.Status(http.StatusOK).JSON(fiber.Map{
 		"message": "Hotel found",
 		"data":    hotelResponse,
 	})
-
 }
+
 
 func UpdateHotel(c *fiber.Ctx) error {
 	id := c.Params("id")
