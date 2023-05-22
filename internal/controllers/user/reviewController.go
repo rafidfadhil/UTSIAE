@@ -40,10 +40,10 @@ func CreateReview(c *fiber.Ctx) error {
 	}
 
 	newReview := models.Review{
-		UserID:			user.UserID,
-		UserName:		username.Name,
-		HotelID:		req.HotelID,
-		Review:			req.Review,
+		UserID:   user.UserID,
+		UserName: username.Name,
+		HotelID:  req.HotelID,
+		Review:   req.Review,
 	}
 
 	err = database.DB.Create(&newReview).Error
@@ -53,14 +53,14 @@ func CreateReview(c *fiber.Ctx) error {
 	}
 
 	response := models.ReviewResponse{
-		ID:				newReview.ID,
-		UserName:	username.Name,
-		Review:		newReview.Review,
+		ID:       newReview.ID,
+		UserName: username.Name,
+		Review:   newReview.Review,
 	}
 
 	return c.Status(http.StatusCreated).JSON(fiber.Map{
 		"message": "Review added",
-		"data":			response,
+		"data":    response,
 	})
 }
 
@@ -69,7 +69,6 @@ func GetReview(c *fiber.Ctx) error {
 	review := []models.Review{}
 
 	id := c.Params("id")
-
 
 	err := database.DB.Where("hotel_id = ?", id).Find(&review).Error
 
@@ -81,13 +80,11 @@ func GetReview(c *fiber.Ctx) error {
 
 	for _, review := range review {
 		reviewResponse = append(reviewResponse, models.ReviewResponse{
-			ID:      				review.ID,
-			UserName:    		review.UserName,
-			Review:   			review.Review,
+			ID:       review.ID,
+			UserName: review.UserName,
+			Review:   review.Review,
 		})
 	}
-
-	
 
 	return c.Status(http.StatusOK).JSON(fiber.Map{
 		"message": "Review found",

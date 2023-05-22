@@ -4,6 +4,7 @@ import (
 	"Hotelin-BE/internal/database"
 	"Hotelin-BE/internal/models"
 	"net/http"
+
 	"github.com/gofiber/fiber/v2"
 )
 

@@ -18,11 +18,11 @@ func RegisterHotel(c *fiber.Ctx) error {
 	}
 
 	hotel := models.Hotel{
-		Name:       req.Name,
-		Email:			req.Email,
-		Phone:			req.Phone,
-		Address:		req.Address,
-		Rating:			req.Rating,
+		Name:    req.Name,
+		Email:   req.Email,
+		Phone:   req.Phone,
+		Address: req.Address,
+		Rating:  req.Rating,
 	}
 
 	err := database.DB.Create(&hotel).Error
@@ -36,7 +36,6 @@ func RegisterHotel(c *fiber.Ctx) error {
 		"message": "Hotel Added",
 	})
 }
-
 
 func GetHotelByID(c *fiber.Ctx) error {
 	var hotel models.Hotel
@@ -57,7 +56,7 @@ func GetHotelByID(c *fiber.Ctx) error {
 		Email:   hotel.Email,
 		Phone:   hotel.Phone,
 		Address: hotel.Address,
-		Rating:	 hotel.Rating,
+		Rating:  hotel.Rating,
 	}
 
 	return c.Status(http.StatusOK).JSON(fiber.Map{

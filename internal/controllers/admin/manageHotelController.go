@@ -3,8 +3,9 @@ package admin
 import (
 	"net/http"
 
-	"Hotelin-BE/internal/models"
 	"Hotelin-BE/internal/database"
+	"Hotelin-BE/internal/models"
+
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -29,11 +30,9 @@ func ShowAllHotel(c *fiber.Ctx) error {
 			Email:   hotel.Email,
 			Phone:   hotel.Phone,
 			Address: hotel.Address,
-			Rating:	 hotel.Rating,
+			Rating:  hotel.Rating,
 		})
 	}
-
-	
 
 	return c.Status(http.StatusOK).JSON(fiber.Map{
 		"message": "hotel found",

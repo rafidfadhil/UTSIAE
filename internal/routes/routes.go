@@ -1,10 +1,11 @@
 package routes
 
 import (
+	"Hotelin-BE/internal/controllers/admin"
 	"Hotelin-BE/internal/controllers/hotel"
 	"Hotelin-BE/internal/controllers/user"
-	"Hotelin-BE/internal/controllers/admin"
 	"Hotelin-BE/internal/middleware"
+
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -21,7 +22,7 @@ func Setup(app *fiber.App) {
 	login.Post("", user.Login)
 
 	// ==================== User ========================
-	
+
 	logoutUser := api.Group("/logoutUser").Use(middleware.AuthUser(middleware.Config{
 		Unauthorized: func(c *fiber.Ctx) error {
 			return c.Status(401).JSON(fiber.Map{
@@ -106,10 +107,10 @@ func Setup(app *fiber.App) {
 		},
 	}))
 	adminAPI.Get("/hotel", admin.ShowAllHotel)
-	
+
 	hotelAdminAPI := adminAPI.Group("/hotel")
 	hotelAdminAPI.Post("/create", hotel.RegisterHotel)
-	hotelAdminAPI.Get("/detail", hotel.GetHotelByID)
+	hotelAdminAPI.Get("/:id", hotel.GetHotelByID)
 	hotelAdminAPI.Put("/update", hotel.UpdateHotel)
 	hotelAdminAPI.Delete("/delete", hotel.DeleteHotel)
 
@@ -123,6 +124,5 @@ func Setup(app *fiber.App) {
 	roomAPI.Post("/create", hotel.RegisterRoom)
 	roomAPI.Put("/update", hotel.UpdateRoom)
 	roomAPI.Delete("/delete", hotel.DeleteRoom)
-
 
 }

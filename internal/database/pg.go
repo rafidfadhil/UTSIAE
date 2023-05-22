@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"Hotelin-BE/internal/models"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

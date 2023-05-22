@@ -1,9 +1,10 @@
 package user
 
 import (
-	"net/http"
 	"Hotelin-BE/internal/database"
 	"Hotelin-BE/internal/models"
+	"net/http"
+
 	"github.com/gofiber/fiber/v2"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -48,7 +49,6 @@ func Register(c *fiber.Ctx) error {
 		})
 	}
 
-
 	err = database.DB.Create(&newUser).Error
 	if err != nil {
 		return c.Status(http.StatusInternalServerError).JSON(err.Error())
@@ -67,7 +67,5 @@ func Register(c *fiber.Ctx) error {
 	return c.Status(http.StatusOK).JSON(fiber.Map{
 		"message": "User created successfully",
 	})
-
-
 
 }

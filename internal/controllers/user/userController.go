@@ -1,9 +1,10 @@
 package user
 
 import (
-	"net/http"
 	"Hotelin-BE/internal/database"
 	"Hotelin-BE/internal/models"
+	"net/http"
+
 	"github.com/gofiber/fiber/v2"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -20,10 +21,10 @@ func UserDetail(c *fiber.Ctx) error {
 	}
 
 	userResponse := models.UserDetail{
-		ID:    userDetail.ID,
-		Name:  userDetail.Name,
-		Email: userDetail.Email,
-		Phone: userDetail.Phone,
+		ID:      userDetail.ID,
+		Name:    userDetail.Name,
+		Email:   userDetail.Email,
+		Phone:   userDetail.Phone,
 		Address: userDetail.Address,
 	}
 
@@ -43,23 +44,22 @@ func ChangeProfile(c *fiber.Ctx) error {
 		})
 	}
 
-	
 	var userDetail models.User
-	
+
 	err := database.DB.Where("id = ?", user.UserID).First(&userDetail).Error
-	
+
 	if err != nil {
 		return c.Status(http.StatusNotFound).JSON(fiber.Map{
 			"message": "User not found",
 		})
 	}
-	
+
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)
 
 	if err != nil {
 		return c.Status(http.StatusInternalServerError).JSON(err.Error())
 	}
-	
+
 	userDetail.Name = req.Name
 	userDetail.Phone = req.Phone
 	userDetail.Email = req.Email

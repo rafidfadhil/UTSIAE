@@ -31,10 +31,10 @@ func RegisterRoom(c *fiber.Ctx) error {
 	}
 
 	newRoom := models.Room{
-		Name:    			 req.Name,
-		Price:   			 req.Price,
-		Description:   req.Description,
-		HotelID: 			 req.HotelID,
+		Name:        req.Name,
+		Price:       req.Price,
+		Description: req.Description,
+		HotelID:     req.HotelID,
 	}
 
 	err = database.DB.Create(&newRoom).Error
@@ -44,16 +44,16 @@ func RegisterRoom(c *fiber.Ctx) error {
 	}
 
 	response := models.RoomResponse{
-		ID:      			 newRoom.ID,
-		Name:    			 newRoom.Name,
-		Price:   			 newRoom.Price,
-		Description:   newRoom.Description,
-		HotelID: 			 newRoom.HotelID,
+		ID:          newRoom.ID,
+		Name:        newRoom.Name,
+		Price:       newRoom.Price,
+		Description: newRoom.Description,
+		HotelID:     newRoom.HotelID,
 	}
 
 	return c.Status(http.StatusCreated).JSON(fiber.Map{
 		"message": "Room registered",
-		"data":			response,
+		"data":    response,
 	})
 
 }
@@ -132,15 +132,13 @@ func GetRoomByHotelID(c *fiber.Ctx) error {
 
 	for _, room := range room {
 		roomResponse = append(roomResponse, models.RoomResponse{
-			ID:      				room.ID,
-			Name:    				room.Name,
-			Price:   				room.Price,
-			Description:  	room.Description,
-			HotelID: 				room.HotelID,
+			ID:          room.ID,
+			Name:        room.Name,
+			Price:       room.Price,
+			Description: room.Description,
+			HotelID:     room.HotelID,
 		})
 	}
-
-	
 
 	return c.Status(http.StatusOK).JSON(fiber.Map{
 		"message": "room found",

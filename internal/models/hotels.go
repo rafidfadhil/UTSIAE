@@ -6,12 +6,12 @@ import (
 )
 
 type Hotel struct {
-	ID      	string 		`json:"id" gorm:"primaryKey, type:uuid, default:uuid_generate_v4()"`
-	Name    	string 		`json:"name"`
-	Email   	string 		`json:"email"`
-	Phone   	string 		`json:"phone"`
-	Address 	string 		`json:"address"`
-	Rating		string		`json:"rating"`
+	ID      string `json:"id" gorm:"primaryKey, type:uuid, default:uuid_generate_v4()"`
+	Name    string `json:"name"`
+	Email   string `json:"email"`
+	Phone   string `json:"phone"`
+	Address string `json:"address"`
+	Rating  string `json:"rating"`
 }
 
 func (s *Hotel) BeforeCreate(tx *gorm.DB) (err error) {
@@ -24,14 +24,14 @@ type HotelRequest struct {
 	Email   string `json:"email"`
 	Phone   string `json:"phone"`
 	Address string `json:"address"`
-	Rating	string `json:"rating"`
+	Rating  string `json:"rating"`
 }
 
 type HotelResponse struct {
-	ID      	string `json:"id"`
-	Name    	string `json:"name"`
-	Email   	string `json:"email"`
-	Phone   	string `json:"phone"`
-	Address 	string `json:"address"`
-	Rating		string `json:"rating"`
+	ID      string `json:"id"`
+	Name    string `json:"name"`
+	Email   string `json:"email"`
+	Phone   string `json:"phone"`
+	Address string `json:"address"`
+	Rating  string `json:"rating"`
 }

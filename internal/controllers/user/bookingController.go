@@ -4,6 +4,7 @@ import (
 	"Hotelin-BE/internal/database"
 	"Hotelin-BE/internal/models"
 	"net/http"
+
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -26,7 +27,7 @@ func CreateBooking(c *fiber.Ctx) error {
 			"message": "Failed to create booking",
 		})
 	}
-	
+
 	var room models.Room
 
 	err = database.DB.Where("id = ?", req.RoomID).Find(&room).Error
@@ -53,16 +54,16 @@ func CreateBooking(c *fiber.Ctx) error {
 	totalPrice += (room.Price * float64(req.Duration)) + additionalPrice
 
 	booking := models.Booking{
-		UserID:			user.UserID,
-		HotelID:		req.HotelID,
-		HotelName:	hotel.Name,
-		RoomID:			req.RoomID,
-		RoomName:		room.Name,
-		Covid:			req.Covid,
-		TotalPrice:	totalPrice,
-		CheckIn:		req.CheckIn,
-		CheckOut:		req.CheckOut,
-		Duration:		req.Duration,
+		UserID:     user.UserID,
+		HotelID:    req.HotelID,
+		HotelName:  hotel.Name,
+		RoomID:     req.RoomID,
+		RoomName:   room.Name,
+		Covid:      req.Covid,
+		TotalPrice: totalPrice,
+		CheckIn:    req.CheckIn,
+		CheckOut:   req.CheckOut,
+		Duration:   req.Duration,
 	}
 
 	var userBalance models.UserBalance
@@ -101,14 +102,14 @@ func CreateBooking(c *fiber.Ctx) error {
 	}
 
 	bookingResponse := models.BookingResponse{
-		ID:					booking.ID,
-		HotelID:		hotel.ID,
-		HotelName:	hotel.Name,
-		RoomName:		room.Name,
-		Duration:		booking.Duration,
-		TotalPrice:	booking.TotalPrice,
-		CheckIn:		booking.CheckIn,
-		CheckOut:		booking.CheckOut,
+		ID:         booking.ID,
+		HotelID:    hotel.ID,
+		HotelName:  hotel.Name,
+		RoomName:   room.Name,
+		Duration:   booking.Duration,
+		TotalPrice: booking.TotalPrice,
+		CheckIn:    booking.CheckIn,
+		CheckOut:   booking.CheckOut,
 	}
 
 	return c.Status(http.StatusOK).JSON(fiber.Map{
@@ -158,14 +159,14 @@ func ShowAllBooking(c *fiber.Ctx) error {
 
 	for _, booking := range booking {
 		bookingResponse = append(bookingResponse, models.BookingResponse{
-		ID:					booking.ID,
-		HotelID:		booking.HotelID,
-		HotelName:	booking.HotelName,
-		RoomName:		booking.RoomName,
-		Duration:		booking.Duration,
-		TotalPrice:	booking.TotalPrice,
-		CheckIn:		booking.CheckIn,
-		CheckOut:		booking.CheckOut,
+			ID:         booking.ID,
+			HotelID:    booking.HotelID,
+			HotelName:  booking.HotelName,
+			RoomName:   booking.RoomName,
+			Duration:   booking.Duration,
+			TotalPrice: booking.TotalPrice,
+			CheckIn:    booking.CheckIn,
+			CheckOut:   booking.CheckOut,
 		})
 	}
 
